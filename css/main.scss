@@ -1,0 +1,194 @@
+@import "mixin";
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --MainColor: rgb(131, 68, 24);
+}
+body {
+    // background-color: rgb(1, 17, 17);
+    display: flex;
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Media */
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+
+    // media
+
+    @include Br_point(mobile) {
+        width: 700px;
+    }
+
+    @include Br_point(small) {
+        width: 750px;
+    }
+    @include Br_point(medium) {
+        width: 970px;
+    }
+    @include Br_point(Large) {
+        width: 1170px;
+    }
+}
+
+.container {
+    position: relative;
+    margin: 20px auto;
+    overflow: hidden;
+    .slids-count {
+        position: absolute;
+        top: 1em;
+        left: 2em;
+        padding: 0.5em 1em;
+        background-color: #fff;
+        border-radius: 10px;
+        z-index: 1000;
+
+        span {
+            font-weight: 800;
+            font-size: 1.4em;
+        }
+    }
+    .img {
+        margin: 0 auto;
+        height: max-content;
+        width: 100%;
+        height: 70vh;
+        position: relative;
+        img {
+            border-radius: 10px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transition: opacity 1s,transform 1s;
+        }
+    }
+
+    .indicators {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+        padding: 0 20px;
+        button {
+            padding: 10px 20px;
+            border-radius: 7px;
+            background-color: #fff;
+            border: 1px solid var(--MainColor);
+            font-size: 20px;
+            font-weight: 600;
+            width: 130px;
+            color: var(--MainColor);
+            transform: 0.2s;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            cursor: pointer;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 150%;
+                background-color: var(--MainColor);
+                transition: 0.3s;
+                z-index: -1;
+            }
+            &:hover {
+                transition-delay: 0.2s;
+                color: #fff;
+                &::before {
+                    width: 100%;
+                }
+            }
+        }
+        .BtnEnd {
+            opacity: 0.5;
+            color: #fff;
+            background-color: var(--MainColor);
+            cursor: auto;
+        }
+        ul {
+            list-style: none;
+            display: flex;
+
+            li {
+                flex-shrink: 1;
+                display: inline-block;
+                padding: 5px 10px;
+                color: #fff;
+                cursor: pointer;
+                font-size: 20px;
+                border: 1px solid var(--MainColor);
+                color: var(--MainColor);
+                border-radius: 10px;
+                margin-left: 5px;
+                &:not(.active):hover {
+                    opacity: 0.7;
+                }
+            }
+            .active {
+                color: #fff;
+                background-color: var(--MainColor);
+            }
+        }
+        @include Br_point(mobile) {
+            button {
+                padding: 5px 10px;
+                border-radius: 3px;
+                font-size: 15px;
+                font-weight: 500;
+                width: 80px;
+            }
+            ul li {
+                padding: 2px 5px;
+                font-size: 15px;
+                border-radius: 3px;
+            }
+        }
+    }
+}
+@include Br_point(mobile) {
+    .container {
+        .img {
+            height: auto;
+            position: relative;
+            padding-top: 56.25%;
+            width: 100%;
+            overflow: hidden;
+            img {
+                border-radius: 10px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                transition: opacity 1s;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .slids-count {
+            padding: 0.3em 0.4em;
+            border-radius: 5px;
+            span {
+                font-weight: 700;
+                font-size: 1em;
+            }
+        }
+        .indicators {
+            padding: 5px 0;
+        }
+    }
+}
